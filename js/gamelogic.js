@@ -52,7 +52,7 @@ class GameModel {
     if (this.fallingPiece === null) {
       this.renderGameState()
       return
-    } else if (this.collision(this.fallingPiece.x, this.fallingPiece.y + 1)) {
+    } else if (this.collisions(this.fallingPiece.x, this.fallingPiece.y + 1)) {
       const shape = this.fallingPiece.shape 
       const x = this.fallingPiece.x 
       const y = this.fallingPiece.y 
