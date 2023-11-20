@@ -23,7 +23,7 @@ class GameModel {
       for (let j = 0; j < n; j++) {
         if (shape[i][j] > 0) {
           let p = x + j 
-          let q = y + 1
+          let q = y + i
           if (p >= 0 && p < COLS && q < ROWS) {
             if (this.grid[q][p] > 0) {
               return true
