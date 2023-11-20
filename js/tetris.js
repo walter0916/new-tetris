@@ -1,24 +1,41 @@
 let gameBoard = document.getElementById('game-board')
 let scoreBoard = document.getElementById('scoreboard')
+let startButton = document.getElementById('startbtn')
+let endButton = document.getElementById('endbtn')
 let ctx = gameBoard.getContext('2d')
 ctx.scale(BLOCK_SIDE_LENGTH, BLOCK_SIDE_LENGTH)
 let model = new GameModel(ctx)
+let gameInterval 
 
 let score = 0 
-setInterval(() => {
+startButton.addEventListener('click', () => {
+  clearInterval(gameInterval)
   newGameState()
-}, GAME_CLOCK)
+})
+
+endButton.addEventListener('click', () => {
+  clearInterval(gameInterval)
+  resetGame()
+})
 
 let newGameState = () => {
-  fullRow()
-  if (model.fallingPiece === null) {
-    const randomNum = Math.round(Math.random() * 6) + 1
-    const newPiece = new Tetromino(SHAPES[randomNum], ctx)
-    model.fallingPiece = newPiece
-    model.moveDown()
-  } else {
-    model.moveDown()
-  }
+  gameInterval = setInterval(() => {
+    fullRow()
+    if (model.fallingPiece === null) {
+      const randomNum = Math.round(Math.random() * 6) + 1
+      const newPiece = new Tetromino(SHAPES[randomNum], ctx)
+      model.fallingPiece = newPiece
+      model.moveDown()
+    } else {
+      model.moveDown()
+    }
+  }, GAME_CLOCK)
+}
+
+const resetGame = () => {
+  model = new GameModel(ctx)
+  score = 0 
+  scoreBoard.innerHTML = "Score: 0"
 }
 
 const fullRow = () => {
@@ -37,7 +54,7 @@ const fullRow = () => {
       model.grid.unshift([0,0,0,0,0,0,0,0,0,0])
     }
   }
-  scoreBoard.innerHTML = "Score:" + String(score)
+  scoreBoard.innerHTML = "Score: " + String(score)
 }
 
 document.addEventListener("keydown", (e) => {
