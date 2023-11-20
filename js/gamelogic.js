@@ -75,4 +75,36 @@ class GameModel {
     }
     this.renderGameState()
   }
+  move(right) {
+    if (this.fallingPiece === null) {
+      return
+    }
+    let x = this.fallingPiece.x 
+    let y = this.fallingPiece.y 
+    if (right) {
+      if (!this.collisions(x + 1, y)) {
+        this.fallingPiece.x += 1 
+      } 
+    } else {
+      if (!this.collisions(x - 1, y)) {
+        this.fallingPiece.x -= 1 
+      }
+    }
+    this.renderGameState()
+  }
+  rotate() {
+    if (this.fallingPiece !== null) {
+      let shape = [...this.fallingPiece.shape.map((row) => [...row])]
+      for (let y = 0; y < shape.length; ++y) {
+        for (let x = 0; x < y; ++x) {
+          [shape[x][y], shape[y][x]] = [shape[y][x], shape[x][y]] 
+        }
+      }
+      shape.forEach((row => row.reverse()))
+      if (!this.collisions(this.fallingPiece.x, this.fallingPiece.y, shape)) {
+        this.fallingPiece.shape = shape
+      }
+    }
+    this.renderGameState()
+  }
 }
