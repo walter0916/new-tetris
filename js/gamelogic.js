@@ -1,3 +1,5 @@
+let gameMessage = document.getElementById('message')
+
 class GameModel {
   constructor(ctx) {
     this.ctx = ctx
@@ -45,5 +47,32 @@ class GameModel {
     if (this.fallingPiece !== null){
       this.fallingPiece.renderPiece()
     }
+  }
+  moveDown() {
+    if (this.fallingPiece === null) {
+      this.renderGameState()
+      return
+    } else if (this.collision(this.fallingPiece.x, this.fallingPiece.y + 1)) {
+      const shape = this.fallingPiece.shape 
+      const x = this.fallingPiece.x 
+      const y = this.fallingPiece.y 
+      shape.map((row, i) => {
+        row.map((cell, j) => {
+          let p = x + j 
+          let q = y + i 
+          if (p >= 0 && p < COLS && q < ROWS && cell > 0) {
+            this.grid[q][p] = shape[i][j]
+          }
+        })
+      })
+      if (this.fallingPiece.y === 0) {
+        gameMessage.textContent = "Game Over!"
+        this.grid = this.makeStartingGrid()
+      }
+      this.fallingPiece = null 
+    } else {
+      this.fallingPiece.y += 1
+    }
+    this.renderGameState()
   }
 }
