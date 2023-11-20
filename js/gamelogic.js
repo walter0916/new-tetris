@@ -35,6 +35,15 @@ class GameModel {
     return false 
   }
   renderGameState() {
-    
+    for (let i = 0; i < this.grid.length; i++) {
+      for (let j = 0; j < this.grid[i].length; j++) {
+        let cell = this.grid[i][j]
+        this.ctx.fillStyle = COLORS[cell]
+        this.ctx.fillRect(j, i, 1, 1)
+      }
+    }
+    if (this.fallingPiece !== null){
+      this.fallingPiece.renderPiece()
+    }
   }
 }
