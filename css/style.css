@@ -61,13 +61,14 @@ button:hover {
 }
 
 #title {
-  font-size: 3em; 
+  font-size: 5em; 
   margin: auto;
   text-transform: uppercase; 
   letter-spacing: 3px; 
   position: relative;
   background: linear-gradient(45deg, #00f, #0ff); 
   color: #fff; 
+  padding: 5px;
 }
 
 #endbtn {

@@ -14,6 +14,8 @@ startButton.addEventListener('click', () => {
   renderNextPiecePreview()
   startButton.style.display = 'none'
   endButton.style.display = 'inline'
+  gameover = false
+  gameMessage.textContent = ""
 })
 
 endButton.addEventListener('click', () => {
@@ -21,16 +23,28 @@ endButton.addEventListener('click', () => {
   resetGame()
   startButton.style.display = 'inline'
   endButton.style.display = 'none'
+  gameover = false
 })
+
+let endOfGame = () => {
+  if (gameover) {
+    clearInterval(gameInterval)
+    resetGame()
+    startButton.style.display = 'inline'
+    endButton.style.display = 'none'
+  } else 
+  return
+}
 
 let newGameState = () => {
   gameInterval = setInterval(() => {
     fullRow()
     if (model.fallingPiece === null) {
-      model.fallingPiece = model.generateNextPiece();
-      model.nextPiece = null; // Clear the next piece
+      model.fallingPiece = model.generateNextPiece()
+      model.nextPiece = null
       renderNextPiecePreview()
       model.moveDown()
+      endOfGame()
     } else {
       model.moveDown()
     }
@@ -99,5 +113,5 @@ const renderNextPiecePreview = () => {
   let nextPiece = model.generateNextPiece()
   nextPiece.renderPiecePreview(previewCtx)
   console.log(previewCanvas)
-};
+}
 

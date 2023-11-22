@@ -1,10 +1,10 @@
 let gameMessage = document.getElementById('message')
+let gameover = false 
 class GameModel {
   constructor(ctx) {
     this.ctx = ctx
     this.fallingPiece = null 
     this.grid = this.makeStartingGrid()
-
   }
   makeStartingGrid() {
     let grid = []
@@ -68,6 +68,9 @@ class GameModel {
       if (this.fallingPiece.y === 0) {
         gameMessage.textContent = "Game Over!"
         this.grid = this.makeStartingGrid()
+        startButton.style.display = "inline"
+        endButton.style.display = "none"
+        gameover = true
       }
       this.fallingPiece = null 
     } else {

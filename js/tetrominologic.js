@@ -3,7 +3,7 @@ class Tetromino {
     this.shape = shape
     this.ctx = ctx
     this.y = 0 
-    this.x = Math.floor(COLS / 2)
+    this.x = Math.floor((COLS - this.shape[0].length) / 2)
   }
   renderPiece(){
     this.shape.map((row, i) => {
