@@ -15,4 +15,16 @@ class Tetromino {
       })
     })
   }
+  renderPiecePreview(ctx) {
+    this.shape.forEach((row, i) => {
+      row.forEach((cell, j) => {
+        if (cell > 0) {
+          ctx.fillStyle = COLORS[cell]
+          ctx.fillRect(j * 20 , i * 20, 20, 20)
+        }
+      })
+    })
+  }
 }
+
+

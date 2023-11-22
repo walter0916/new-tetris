@@ -11,6 +11,7 @@ let score = 0
 startButton.addEventListener('click', () => {
   clearInterval(gameInterval)
   newGameState()
+  renderNextPiecePreview()
 })
 
 endButton.addEventListener('click', () => {
@@ -22,9 +23,9 @@ let newGameState = () => {
   gameInterval = setInterval(() => {
     fullRow()
     if (model.fallingPiece === null) {
-      const randomNum = Math.round(Math.random() * 6) + 1
-      const newPiece = new Tetromino(SHAPES[randomNum], ctx)
-      model.fallingPiece = newPiece
+      model.fallingPiece = model.generateNextPiece();
+      model.nextPiece = null; // Clear the next piece
+      renderNextPiecePreview()
       model.moveDown()
     } else {
       model.moveDown()
@@ -86,3 +87,13 @@ document.addEventListener("keydown", (e) => {
       break
   }
 })
+
+const renderNextPiecePreview = () => {
+  let previewCanvas = document.getElementById('next-piece-preview')
+  let previewCtx = previewCanvas.getContext('2d')
+  previewCtx.clearRect(0, 0, previewCanvas.width, previewCanvas.height)
+  let nextPiece = model.generateNextPiece()
+  nextPiece.renderPiecePreview(previewCtx)
+  console.log(previewCanvas)
+};
+

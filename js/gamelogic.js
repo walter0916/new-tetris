@@ -1,10 +1,10 @@
 let gameMessage = document.getElementById('message')
-
 class GameModel {
   constructor(ctx) {
     this.ctx = ctx
     this.fallingPiece = null 
     this.grid = this.makeStartingGrid()
+
   }
   makeStartingGrid() {
     let grid = []
@@ -106,5 +106,12 @@ class GameModel {
       }
     }
     this.renderGameState()
+  }
+  generateNextPiece() {
+    if (!this.nextPiece) {
+      const randomNum = Math.round(Math.random() * 6) + 1
+      this.nextPiece = new Tetromino(SHAPES[randomNum], this.ctx)
+    }
+    return this.nextPiece
   }
 }
