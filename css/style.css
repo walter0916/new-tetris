@@ -9,9 +9,10 @@ body {
 .game {
   display: flex;
   flex-direction: row;
-  justify-content: space-around;
+  justify-content: center;
   align-items: center;
-  height: 80vh; 
+  height: 80vh;
+  margin-left: -120px;
 }
 
 header {
@@ -30,6 +31,7 @@ section {
   display: flex;
   flex-direction: column;
   align-items: center;
+  margin-right: 50px;
 }
 
 button {
@@ -55,6 +57,7 @@ button:hover {
   border: 5px solid #fff;
   box-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
   margin-top: 20px;
+  margin-left: 50px;
 }
 
 #title {
@@ -67,5 +70,8 @@ button:hover {
   color: #fff; 
 }
 
+#endbtn {
+  display: none;
+}
 
 

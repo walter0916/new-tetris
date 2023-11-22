@@ -12,11 +12,15 @@ startButton.addEventListener('click', () => {
   clearInterval(gameInterval)
   newGameState()
   renderNextPiecePreview()
+  startButton.style.display = 'none'
+  endButton.style.display = 'inline'
 })
 
 endButton.addEventListener('click', () => {
   clearInterval(gameInterval)
   resetGame()
+  startButton.style.display = 'inline'
+  endButton.style.display = 'none'
 })
 
 let newGameState = () => {
