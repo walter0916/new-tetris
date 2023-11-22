@@ -16,6 +16,7 @@ startButton.addEventListener('click', () => {
   endButton.style.display = 'inline'
   gameover = false
   gameMessage.textContent = ""
+  scoreBoard.innerHTML = "Score: 0"
 })
 
 endButton.addEventListener('click', () => {
@@ -29,7 +30,6 @@ endButton.addEventListener('click', () => {
 let endOfGame = () => {
   if (gameover) {
     clearInterval(gameInterval)
-    resetGame()
     startButton.style.display = 'inline'
     endButton.style.display = 'none'
   } else 
