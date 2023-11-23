@@ -48,8 +48,8 @@ class GameModel {
       for (let i = 0; i < this.fallingPiece.shape.length; i++) {
         for (let j = 0; j < this.fallingPiece.shape[i].length; j++) {
           if (this.fallingPiece.shape[i][j] > 0) {
-            const colorIndex = this.fallingPiece.shape[i][j];
-            gameBoard.style.borderColor = COLORS[colorIndex];
+            const colorIndex = this.fallingPiece.shape[i][j]
+            gameBoard.style.borderColor = COLORS[colorIndex]
           }
         }
       }
