@@ -112,6 +112,6 @@ const renderNextPiecePreview = () => {
   previewCtx.clearRect(0, 0, previewCanvas.width, previewCanvas.height)
   let nextPiece = model.generateNextPiece()
   nextPiece.renderPiecePreview(previewCtx)
-  console.log(previewCanvas)
+  gameBoard.style.borderColor = COLORS[nextPiece.shape[0][0]]
 }
 
